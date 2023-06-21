@@ -39,7 +39,7 @@ for row in worksheet.iter_rows(min_row=2,values_only=True):
     sql3 = """INSERT INTO TABLA (PARAMETROS)
              values( :1,:2, :3, :4, :5)"""
   
-    cursor.execute(sql3, (idsContacto,row[0],ultimo_dato,"ManuelRed",fecha_actual))
+    cursor.execute(sql3, (idsContacto,row[0],ultimo_dato,"USUARIO",fecha_actual))
     idsContacto+=1
     print(f"{iterador} inserción realizada")
 
