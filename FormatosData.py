@@ -18,12 +18,12 @@ import pandas as pd
 import re
 
 # Cargar archivo Excel
-df = pd.read_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\DataDP2.xlsx", header=None)
+df = pd.read_excel("RUTA", header=None)
 
 # Definir expresiones regulares
-patronN = r'[a-zA-ZÁ-Úá-ú]+\.\s?[a-zA-ZÁ-Úá-ú]+\s[a-zA-ZÁ-Úá-ú\s]+|^([a-zA-ZÁ-Úá-ú\s]*)'
-patronT = r'\d(?:(?!\s{3,})[\d\s/-])*\d?'
-patronE = r'(?:EXTS?|[Ee]xt)[\s:.,;]*(?:\d{4})(?:\s{0,7}[,Y]?\s*\d{1,4})*(?:\s*(?:Red|\b))|\d{1,4}(?:,\s*\d{1,4})*(?:\s{3,7}(?:\d{4},\s*)*\d{4}(?:Red))|\d{4}(?:Red)'
+patronN = r'EXPRESION'
+patronT = r'EXPRESION'
+patronE = r'EXPRESION'
 
 # Variables y listas para almacenar los resultados
 nombre = ''
@@ -58,7 +58,7 @@ for texto in df[3]:
 df_nuevo = pd.DataFrame({"columna Principal": df[3], "Nombre completo": nombres, "Números": numeros, "Extensión": extensiones})
 
 # Guardar el DataFrame en un nuevo archivo Excel
-df_nuevo.to_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\InyeccionData.xlsx", sheet_name="InyeccionData", index=False)
+df_nuevo.to_excel("RUTA", sheet_name="HOJA", index=False)
 
 # Imprimir un mensaje indicando que se ha creado el archivo
 print("Se creó el archivo xlsx")
