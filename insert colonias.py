@@ -34,7 +34,7 @@ for row in worksheet.iter_rows(min_row=2, values_only=True):
   dato_d = row[4]
   iterador = iterador + 1
   #Se ejecuta la consulta con los valores correspondientes
-  cursor.execute(sql, (dato_b,dato_a,fecha_actual,"Manuel",dato_c,dato_d))
+  cursor.execute(sql, (dato_b,dato_a,fecha_actual,"USUARIO",dato_c,dato_d))
 # Se confirma la inserción
 conn.commit()
 cursor.close()
