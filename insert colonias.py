@@ -11,9 +11,9 @@ import cx_Oracle
 import openpyxl
 import datetime
 # Se establece la conexión a la base de datos
-conn = cx_Oracle.connect('RVICEPRE/0rAcleDevVP2@10.204.14.120:1521')
+conn = cx_Oracle.connect('CREDENCIALES')
 # Definir la ruta y el nombre del archivo excel
-ruta_excel = "C:/Users/10042891/Desktop/COColonia.xlsx"
+ruta_excel = "RUTA"
 
 # Cargar el archivo excel
 workbook = openpyxl.load_workbook(ruta_excel)
@@ -21,7 +21,7 @@ workbook = openpyxl.load_workbook(ruta_excel)
 cursor = conn.cursor()
 
 # Se define la consulta de inserción
-sql = "INSERT INTO TCVPCCOLONIAT2(FCCOLONIA,FCCP,FDFECHACT,FCUSERACT,FIIDCDFK,FIIDEDO) VALUES (:1, :2, :3, :4, :5,:6)"
+sql = "INSERT INTO TABLA(PARAMETROS) VALUES (:1, :2, :3, :4, :5,:6)"
 # Seleccionar la hoja AGEEML
 worksheet = workbook["Hoja1"]
 iterador = 0
