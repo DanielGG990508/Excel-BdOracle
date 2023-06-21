@@ -12,16 +12,16 @@ import pandas as pd
 import re
 
 # Cargar archivo Excel
-df = pd.read_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\DataDP2.xlsx", header=None)
+df = pd.read_excel("RUTA", header=None)
 
 #REVOLUCION NO. 1508, TORRE A, PISOS 2DO Y 3RO COL. GUADALUPE INN DELEG. ALVARO OBREGON CIUDAD DE MÉXICO 01020
 # Definir expresiones regulares
-patronCalle = r'(?i)(.*?)(?=\s+(NO\.|NÚMERO)|\b\d{1,4}\b)'
-patronNC = r'(?i)\b\d{1,4}\b'
-patronColonia = r'(?i)(COL\.\s+(.*?)\s)+(DELEG\.)|\b[A-ZÁ-Ú\s]+\b(?=, DELEGACIÓN|DELEGACION)'
+patronCalle = r'EXPRESION'
+patronNC = r'EXPRESION'
+patronColonia = r'EXPRESION'
 #patronColonia = r'(?i)(COL\.\s+(.*?)\s)+(DELEG\.)|\b[A-ZÁ-Ú\s]+\b(?=, DELEGACIÓN|DELEGACION)|\d°\s(.*?)(\sMÉXICO|CIUDAD)'
-patronCiudad = r'(?i)DELEG\.\s+(.*?)\s+(?=CIUDAD)'
-patronCp = r'(?i)C\.P\.|\s+(\d{5})'
+patronCiudad = r'EXPRESION'
+patronCp = r'EXPRESION'
 # Variables y listas para almacenar los resultados
 calles = []
 numeros = []
@@ -65,7 +65,7 @@ for texto in df[2]:
 df_nuevo = pd.DataFrame({"Direccion": df[2], "Calle": calles, "Números": numeros, "Colonia": colonias,"Ciudad":ciudades,"Codigo CP":codigoPs})
 
 # Guardar el DataFrame en un nuevo archivo Excel
-df_nuevo.to_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\InyeccionDirecionesP.xlsx", sheet_name="InyeccionDirecionesP", index=False)
+df_nuevo.to_excel("RUTA", sheet_name="HOJA", index=False)
 
 # Imprimir un mensaje indicando que se ha creado el archivo
 print("Se creó el archivo xlsx")
