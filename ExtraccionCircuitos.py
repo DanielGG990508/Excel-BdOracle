@@ -1,14 +1,3 @@
-# -- coding: utf-8 --
-"""
-Created on Tue May  2 17:48:14 2023
-
-@author: 10042891
-"""
-
-# -- coding: utf-8 --
-"""Copia de SCRAPING INFO.ipynb
-# -- coding: utf-8 --
-"""
 
 import pandas as pd
 #import requests
@@ -18,7 +7,7 @@ from bs4 import BeautifulSoup
 #from nltk.corpus import stopwords
 #import matplotlib.pyplot as plt
 
-archivo = open("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\circuito.txt","r")
+archivo = open("RUTA.txt","r")
 pagina = archivo.read()
 archivo.close()
 pagina = BeautifulSoup(pagina, 'html.parser')
@@ -66,7 +55,7 @@ for i in range(len(child_a)):
     elif child_a[i]['class'][-1] == 'row':
         r.append(child_a[i].text)
         #al procesar un row, abrir el archivo de texto correspondiente y leer su contenido
-        archivorRed = open("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\DatosRed\\circuito"+str(numLink)+".txt","r")
+        archivorRed = open("RUTA"+str(numLink)+".txt","r")
         datosRed = archivorRed.read()
         archivorRed.close()
         datosRed = BeautifulSoup(datosRed, 'html.parser')
@@ -98,4 +87,4 @@ archivo[0]
 # Crear DataFrame desde la lista de listas 'archivo'
 df = pd.DataFrame(archivo)
 # Guardar DataFrame en un archivo Excel
-df.to_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\DataDP2.xlsx", sheet_name="DataDP2", index=False)
+df.to_excel("RUTA", sheet_name="HOJA", index=False)
