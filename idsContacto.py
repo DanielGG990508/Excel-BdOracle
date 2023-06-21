@@ -7,7 +7,7 @@ Created on Tue May 23 12:24:59 2023
 import pandas as pd
 
 # Leer el archivo de Excel
-df = pd.read_excel("C:/Users/10042891/.spyder-py3/DatosRed/PrimerCircuito/InyeccionDataRsoloN.xlsx", sheet_name="Hoja1")
+df = pd.read_excel("RUTA", sheet_name="Hoja1")
 
 # Seleccionar la columna 'A' y 'B'
 columna_a = df['Id persona Principal'] 
@@ -32,6 +32,5 @@ print(idsN)
 df_repetidos = pd.DataFrame({"Valores repetidos": idsN})
 # Guardar el DataFrame en un archivo Excel
 print(f"total de dfrepetidos {len(df_repetidos)}")
-#df_repetidos.to_excel("C:/Users/10042891/.spyder-py3/DatosRed/PrimerCircuito/Match.xlsx", index=False)
 
 print("Fin")
