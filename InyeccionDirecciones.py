@@ -10,25 +10,25 @@ import datetime
 from openpyxl.styles import PatternFill
 from openpyxl.utils import get_column_letter
 # Se establece la conexión a la base de datos
-conn = cx_Oracle.connect('RVICEPRE/0rAcleDevVP2@10.204.14.120:1521')
+conn = cx_Oracle.connect('CREDENCIALES')
 # Definir la ruta y el nombre del archivo excel
-ruta_excel = "C:/Users/10042891/.spyder-py3/DatosRed/PrimerCircuito/InyeccionDireciones.xlsx"
+ruta_excel = "RUTA"
 
-ruta_excel1 = "C:/Users/10042891/.spyder-py3/DatosRed/PrimerCircuito/InyeccionDirecionesFaltantes.xlsx"
+ruta_excel1 = "RUTA"
 # Cargar el archivo excel
 workbook = openpyxl.load_workbook(ruta_excel)
 # Se crea un cursor
 cursor = conn.cursor()
 
 # Se define la consulta de inserción
-sqlInsert = """INSERT INTO RVICEPRE.TAVPDIRECCIONPT2 ( FIIDPERFK, FCCALLE, FINOEXT, FINOINT, FCREFERENCIA, FCTIPO, FCUSERACT, FDFECTHACT, FIIDCOLFK, FIIDCDFK, FIIDEDO) 
+sqlInsert = """INSERT INTO TABLA ( PARAMETROS) 
                VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)"""
         
-sqlConsulta = "SELECT * FROM rvicepre.tcvpccoloniat2 WHERE fiidedofk=:param1 AND lower(fccolonia) LIKE lower(:param2)"
+sqlConsulta = "SELECT * FROM TABLA WHERE PARAMETRO=:param1 AND lower(fccolonia) LIKE lower(:param2)"
 
-sqlConsCont = "select fiidotrapersona from rvicepre.tavpcontacto where fiidpersonafk = :idPersonaP"
+sqlConsCont = "select TABLA from TABLA where PARAMETRO = :PARAMETRO"
 lista_idsCon = []
-worksheet = workbook["InyeccionDireciones"]
+worksheet = workbook["HOJA"]
 iterador = 0
 idsPersona = 26
 fecha_actual = datetime.datetime.now().strftime("%d/%m/%y")
@@ -45,7 +45,7 @@ for row in worksheet.iter_rows(min_row=3, values_only=True):
     nomExt = row[2]
     colonia = str(row[3]).strip()
 ########seccion para insertar direcciones a elementos de la red 
-    cursor.execute(sqlConsCont, {'idPersonaP': idsPersona})
+    cursor.execute(sqlConsCont, {'PARAMETRO': PARAMETRO })
     resContacto = cursor.fetchall()
     for resultado in resContacto:
         lista_idsCon.append(resultado[0]) 
@@ -68,7 +68,7 @@ for row in worksheet.iter_rows(min_row=3, values_only=True):
     fila_actual += 1  # Incrementar el número de fila actual
 ###este for es inecesario si son personas solo es funcional para red
     for i in lista_idsCon:
-        cursor.execute(sqlInsert, [i , calle, nomExt, 0, "Sin Referencia", "Trabajo", "DanielDireccionRed", fecha_actual, idColonia, idCiudad, idEstado])
+        cursor.execute(sqlInsert, [PARAMETROS])
     #cursor.execute(sqlInsert, [idsPersona , calle, nomExt, 0, "Sin Referencia", "Trabajo", "DanielDireccionRed", fecha_actual, idColonia, idCiudad, idEstado])
     idsPersona+=1
     lista_idsCon = []
@@ -83,7 +83,7 @@ for num_fila in filas_sin_coincidencia:
 
 
 # Guardar el archivo con el nuevo formato
-ruta_nuevo_excel = "C:/Users/10042891/.spyder-py3/DatosRed/PrimerCircuito/DireccionesFaltantesContactos.xlsx"
+ruta_nuevo_excel = "RUTA"
 workbook.save(ruta_nuevo_excel)
 
 conn.commit()
