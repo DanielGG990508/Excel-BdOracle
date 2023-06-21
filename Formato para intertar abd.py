@@ -47,7 +47,7 @@ def formatear_nombre(nombre):
 fechaP = date(1990, 1, 1)
 fecha_formateada = fechaP.strftime("%d/%m/%Y")
 # Cargar archivo Excel
-df = pd.read_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\InyeccionData.xlsx", header=None)
+df = pd.read_excel("RUTA", header=None)
 
 # Crear nuevas columnas para nombres y apellidos
 df["Nombre"] = ""
@@ -56,7 +56,7 @@ df["Apellido Materno"] = ""
 
 # Recorrer la columna de nombres completos
 nombresL=[]
-patronN=r'(?i)(?<!\S)(?:TEL|FAX|Red|JUEZ|JUEZA|CONMUTAOR)\b.*'
+patronN=r'EXPRESION'
 
 for nom in df[1][1:]:
     matchN = re.search(patronN,nom)
@@ -77,7 +77,7 @@ for i, texto in enumerate(nombresL):
     nombres = listaN.split()
     num_nombres = len(nombres)
     # Verificar si el nombre completo contiene palabras clave
-    palabras_clave = ["COORDINADOR", "SECRETARIO", "SECRETARIA", "ANALISTA", "OFICIAL", "PARTICULAR", "COORDINATOR", "MAGISTRADA"]
+    palabras_clave = ["PALABRAS"]
     contiene_palabras_clave = any(palabra in texto.upper() for palabra in palabras_clave)
     if not contiene_palabras_clave:
         if num_nombres == 1:
@@ -108,7 +108,7 @@ for i, texto in enumerate(nombresL):
 ########################################################################################################################################
 ##bloque de consulta para la api de genero 
     nombre = nombres[0]  # Nombre para el cual deseas identificar el género
-    api_key = "mKhFG7tt2utQ5GvrFCXXDcaaVrgkt58b4ZT4"  # Reemplaza "tu_clave_de_api" con tu clave de la API
+    api_key = ""  # Reemplaza "tu_clave_de_api" con tu clave de la API
     # Realizar solicitud a la API
     response = requests.get(f"https://api.genderize.io/?name="+ nombre).text
     # Analizar la respuesta JSON
@@ -134,7 +134,7 @@ for i, texto in enumerate(nombresL):
 df = df.drop(columns=[0, 1, 2, 3])  # Ajusta los números de las columnas según corresponda
 
     #DataFrame en un nuevo archivo Excel
-df.to_excel("C:\\Users\\10042891\\.spyder-py3\\DatosRed\\PrimerCircuito\\personasInyeccion.xlsx", sheet_name="personasInyeccion", index=False)
+df.to_excel("RUTA", sheet_name="HOJA", index=False)
 
 # Imprimir un mensaje indicando que se ha creado el archivo
 print("Se creó el archivo xlsx")
